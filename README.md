@@ -16,7 +16,7 @@ docs/
 计划访问地址：
 
 ```text
-https://zhc2004411.github.io/zihai-chun-resume/
+https://zhc2004411.github.io/New-zihai-chun-resume/
 ```
 
 二维码图片：
@@ -34,7 +34,7 @@ docs/assets/site-qrcode.png
 3. 进入仓库 `Settings` -> `Pages`。
 4. `Build and deployment` 选择 `GitHub Actions`。
 5. 等待 `Deploy resume website` 工作流完成。
-6. 打开 `https://zhc2004411.github.io/zihai-chun-resume/` 验证网站。
+6. 打开 `https://zhc2004411.github.io/New-zihai-chun-resume/` 验证网站。
 
 项目已包含自动发布配置：
 
