@@ -3,7 +3,7 @@ const resume = {
     initial: "\u8d44",
     profileTag: "xiaozi",
     callPhone: "\u62e8\u6253\u7535\u8bdd",
-    copyEmail: "\u590d\u5236\u90ae\u7bb1",
+    copyEmail: "\u590d\u5236\u90ae\u7bb1\u5730\u5740",
     copyPhone: "\u590d\u5236\u7535\u8bdd",
     targetTitle: "\u6c42\u804c\u65b9\u5411",
     profileTitle: "\u4e2a\u4eba\u4f18\u52bf",

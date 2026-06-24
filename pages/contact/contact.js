@@ -23,7 +23,7 @@ Page({
   copyEmail() {
     wx.setClipboardData({
       data: this.data.profile.email,
-      success: () => wx.showToast({ title: "\u90ae\u7bb1\u5df2\u590d\u5236", icon: "success" })
+      success: () => wx.showToast({ title: "\u90ae\u7bb1\u5730\u5740\u5df2\u590d\u5236", icon: "success" })
     });
   },
 
