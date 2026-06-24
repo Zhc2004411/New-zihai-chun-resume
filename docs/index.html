@@ -13,13 +13,32 @@
         --ink: #111827;
         --muted: #667085;
         --line: rgba(255, 255, 255, 0.68);
-        --paper: rgba(255, 255, 255, 0.72);
+        --paper: rgba(255, 255, 255, 0.68);
+        --glass-soft: rgba(248, 250, 252, 0.58);
+        --glass-border: rgba(255, 255, 255, 0.72);
+        --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.92);
+        --glass-shadow: 9px 9px 24px rgba(17, 24, 39, 0.09), -8px -8px 22px rgba(255, 255, 255, 0.7);
         --dark: rgba(17, 24, 39, 0.9);
         --amber: #f59e0b;
         --teal: #0f766e;
         --bg: #edf3f8;
-        --shadow: 0 22px 60px rgba(17, 24, 39, 0.1);
+        --shadow: var(--glass-shadow);
         --radius: 22px;
+        --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+        --fs-caption: 13px;
+        --fs-small: 14px;
+        --fs-body: 16px;
+        --fs-lead: 18px;
+        --fs-card-title: 22px;
+        --fs-section-title: clamp(28px, 3vw, 32px);
+        --fs-hero-role: clamp(22px, 3vw, 32px);
+        --fw-regular: 400;
+        --fw-medium: 600;
+        --fw-semibold: 700;
+        --fw-bold: 800;
+        --fw-black: 900;
+        --lh-tight: 1.2;
+        --lh-body: 1.72;
       }
 
       * {
@@ -37,7 +56,10 @@
           radial-gradient(circle at 84% 12%, rgba(245, 158, 11, 0.2), transparent 30%),
           linear-gradient(180deg, #e7edf4 0%, #f8fafc 45%, #eef4f7 100%);
         color: #172033;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+        font-family: var(--font-sans);
+        font-size: var(--fs-body);
+        line-height: var(--lh-body);
+        font-weight: var(--fw-regular);
       }
 
       a {
@@ -55,8 +77,8 @@
         z-index: 20;
         backdrop-filter: blur(18px) saturate(150%);
         -webkit-backdrop-filter: blur(18px) saturate(150%);
-        background: rgba(248, 250, 252, 0.78);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.72);
+        background: rgba(248, 250, 252, 0.74);
+        border-bottom: 1px solid var(--glass-border);
       }
 
       .topbar__inner {
@@ -71,7 +93,7 @@
         display: flex;
         align-items: center;
         gap: 12px;
-        font-weight: 900;
+        font-weight: var(--fw-black);
         text-decoration: none;
       }
 
@@ -97,8 +119,8 @@
         border-radius: 999px;
         padding: 10px 14px;
         color: #344054;
-        font-size: 14px;
-        font-weight: 800;
+        font-size: var(--fs-small);
+        font-weight: var(--fw-bold);
         text-decoration: none;
         transition: transform 160ms ease, background 160ms ease, color 160ms ease;
       }
@@ -182,17 +204,17 @@
       .hero__role {
         margin: 18px 0 0;
         color: #fde68a;
-        font-size: clamp(22px, 3vw, 34px);
+        font-size: var(--fs-hero-role);
         line-height: 1.35;
-        font-weight: 900;
+        font-weight: var(--fw-black);
       }
 
       .hero__summary {
         max-width: 760px;
         margin: 18px 0 0;
         color: #e5e7eb;
-        font-size: 18px;
-        line-height: 1.8;
+        font-size: var(--fs-lead);
+        line-height: 1.75;
       }
 
       .hero__actions {
@@ -212,7 +234,7 @@
         border-radius: 12px;
         background: rgba(255, 255, 255, 0.74);
         color: var(--ink);
-        font-weight: 900;
+        font-weight: var(--fw-black);
         text-decoration: none;
         cursor: pointer;
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.86), 0 16px 36px rgba(0, 0, 0, 0.14);
@@ -239,7 +261,7 @@
         border-radius: var(--radius);
         background: rgba(255, 255, 255, 0.16);
         border: 1px solid rgba(255, 255, 255, 0.24);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.26), 0 24px 58px rgba(0, 0, 0, 0.18);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 12px 12px 34px rgba(0, 0, 0, 0.2), -8px -8px 22px rgba(255, 255, 255, 0.08);
         backdrop-filter: blur(24px) saturate(145%);
         -webkit-backdrop-filter: blur(24px) saturate(145%);
       }
@@ -259,14 +281,14 @@
 
       .hero-card__label {
         color: #d1d5db;
-        font-size: 14px;
-        font-weight: 800;
+        font-size: var(--fs-small);
+        font-weight: var(--fw-bold);
       }
 
       .hero-card__value {
         color: #fff;
-        font-size: 18px;
-        font-weight: 900;
+        font-size: var(--fs-lead);
+        font-weight: var(--fw-black);
         text-align: right;
       }
 
@@ -289,9 +311,9 @@
       .project,
       .award,
       .contact-card {
-        border: 1px solid var(--line);
+        border: 1px solid var(--glass-border);
         background: var(--paper);
-        box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        box-shadow: var(--shadow), var(--glass-highlight);
         backdrop-filter: blur(24px) saturate(160%);
         -webkit-backdrop-filter: blur(24px) saturate(160%);
       }
@@ -326,9 +348,9 @@
         display: block;
         margin-top: 10px;
         color: var(--muted);
-        font-size: 14px;
+        font-size: var(--fs-small);
         line-height: 1.45;
-        font-weight: 700;
+        font-weight: var(--fw-semibold);
       }
 
       .metric--dark .metric__label {
@@ -352,15 +374,16 @@
       h2 {
         margin: 0;
         color: var(--ink);
-        font-size: clamp(26px, 3vw, 34px);
-        line-height: 1.2;
+        font-size: var(--fs-section-title);
+        line-height: var(--lh-tight);
+        font-weight: var(--fw-black);
       }
 
       .section__meta {
         color: #98a2b3;
-        font-size: 12px;
-        font-weight: 900;
-        letter-spacing: 0.08em;
+        font-size: var(--fs-caption);
+        font-weight: var(--fw-bold);
+        letter-spacing: 0;
         text-transform: uppercase;
       }
 
@@ -395,7 +418,7 @@
       .mini-card h3 {
         margin: 16px 0 10px;
         color: var(--ink);
-        font-size: 22px;
+        font-size: var(--fs-card-title);
       }
 
       .mini-card p,
@@ -405,7 +428,8 @@
       .award p,
       .contact-card p {
         color: #475467;
-        line-height: 1.78;
+        font-size: var(--fs-body);
+        line-height: var(--lh-body);
       }
 
       .tags {
@@ -421,8 +445,8 @@
         background: rgba(236, 253, 245, 0.72);
         border: 1px solid rgba(255, 255, 255, 0.64);
         color: var(--teal);
-        font-size: 13px;
-        font-weight: 900;
+        font-size: var(--fs-caption);
+        font-weight: var(--fw-bold);
       }
 
       .text-list {
@@ -439,7 +463,7 @@
 
       .education strong {
         color: var(--ink);
-        font-size: 22px;
+        font-size: var(--fs-card-title);
       }
 
       .skills {
@@ -451,8 +475,9 @@
       .skill {
         padding: 20px;
         border-radius: 16px;
-        background: rgba(248, 250, 252, 0.62);
-        border: 1px solid rgba(255, 255, 255, 0.72);
+        background: var(--glass-soft);
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--glass-highlight), 6px 6px 18px rgba(17, 24, 39, 0.06), -6px -6px 16px rgba(255, 255, 255, 0.62);
         cursor: pointer;
         transition: transform 160ms ease, border-color 160ms ease;
       }
@@ -471,13 +496,13 @@
 
       .skill__name {
         color: var(--ink);
-        font-size: 18px;
-        font-weight: 900;
+        font-size: var(--fs-lead);
+        font-weight: var(--fw-black);
       }
 
       .skill__level {
         color: var(--teal);
-        font-weight: 900;
+        font-weight: var(--fw-black);
       }
 
       .skill__bar {
@@ -497,6 +522,7 @@
       .skill p {
         margin: 12px 0 0;
         color: var(--muted);
+        font-size: var(--fs-body);
         line-height: 1.6;
       }
 
@@ -530,20 +556,20 @@
         border-radius: 8px;
         background: rgba(255, 247, 237, 0.78);
         color: #c2410c;
-        font-size: 13px;
-        font-weight: 900;
+        font-size: var(--fs-caption);
+        font-weight: var(--fw-bold);
       }
 
       .project__toggle {
         color: var(--teal);
-        font-size: 13px;
-        font-weight: 900;
+        font-size: var(--fs-caption);
+        font-weight: var(--fw-bold);
       }
 
       .project h3 {
         margin: 16px 0 8px;
         color: var(--ink);
-        font-size: 22px;
+        font-size: var(--fs-card-title);
       }
 
       .project__points {
@@ -571,13 +597,13 @@
 
       .award__index {
         color: var(--amber);
-        font-weight: 900;
+        font-weight: var(--fw-black);
       }
 
       .award h3 {
         margin: 0 0 6px;
         color: var(--ink);
-        font-size: 17px;
+        font-size: var(--fs-body);
       }
 
       .award p {
@@ -629,8 +655,8 @@
       .contact-card span {
         display: block;
         color: var(--muted);
-        font-size: 13px;
-        font-weight: 900;
+        font-size: var(--fs-caption);
+        font-weight: var(--fw-bold);
       }
 
       .contact-card strong {
@@ -650,8 +676,8 @@
         border-radius: 999px;
         background: rgba(17, 24, 39, 0.92);
         color: #fff;
-        font-size: 14px;
-        font-weight: 800;
+        font-size: var(--fs-small);
+        font-weight: var(--fw-bold);
         opacity: 0;
         pointer-events: none;
         transform: translate(-50%, 12px);
@@ -681,9 +707,9 @@
         width: min(460px, 100%);
         padding: 26px;
         border-radius: 22px;
-        background: rgba(255, 255, 255, 0.9);
-        border: 1px solid rgba(255, 255, 255, 0.82);
-        box-shadow: 0 30px 90px rgba(17, 24, 39, 0.25);
+        background: rgba(255, 255, 255, 0.86);
+        border: 1px solid var(--glass-border);
+        box-shadow: 16px 16px 60px rgba(17, 24, 39, 0.22), -10px -10px 30px rgba(255, 255, 255, 0.28);
         backdrop-filter: blur(24px) saturate(160%);
         -webkit-backdrop-filter: blur(24px) saturate(160%);
       }
@@ -800,7 +826,7 @@
       <div class="shell topbar__inner">
         <a class="brand" href="#top" aria-label="返回顶部">
           <span class="brand__mark">资</span>
-          <span>资海春</span>
+          <span>xiaozi</span>
         </a>
         <nav class="nav" aria-label="页面导航">
           <a href="#profile">优势</a>
@@ -818,7 +844,7 @@
         <div>
           <div class="chip">
             <span class="chip__mark">资</span>
-            <span>视觉传播设计 / 新媒体方向</span>
+            <span>xiaozi</span>
           </div>
           <h1>资海春</h1>
           <div class="hero__role">摄影师 / 剪辑后期 / 新媒体运营</div>
@@ -843,7 +869,7 @@
           </div>
           <div class="hero-card__row">
             <span class="hero-card__label">拍摄设备</span>
-            <strong class="hero-card__value">自带 Sony 相机</strong>
+            <strong class="hero-card__value">自带 索尼 / Sony 相机</strong>
           </div>
           <div class="hero-card__row">
             <span class="hero-card__label">联系方式</span>
@@ -902,7 +928,7 @@
             <h3>摄影师</h3>
             <p>熟悉相机基础设置、构图、光线判断与现场执行，可承担人物、活动、产品和新媒体素材拍摄。</p>
             <div class="tags">
-              <span class="tag">Sony 相机</span>
+              <span class="tag">索尼 / Sony 相机</span>
               <span class="tag">构图</span>
               <span class="tag">现场执行</span>
             </div>
@@ -973,10 +999,10 @@
             <div class="skill__bar"><div class="skill__fill" style="width: 88%"></div></div>
             <p>移动端短视频剪辑与快速成片</p>
           </article>
-          <article class="skill" data-title="相机拍摄" data-desc="熟练使用相机，自带 Sony 相机">
+          <article class="skill" data-title="相机拍摄" data-desc="熟练使用相机，自带 索尼 / Sony 相机">
             <div class="skill__top"><span class="skill__name">相机拍摄</span><span class="skill__level">86%</span></div>
             <div class="skill__bar"><div class="skill__fill" style="width: 86%"></div></div>
-            <p>熟练使用相机，自带 Sony 相机</p>
+            <p>熟练使用相机，自带 索尼 / Sony 相机</p>
           </article>
           <article class="skill" data-title="Codex / Pencil" data-desc="熟练使用 Codex 和 Pencil，能够调用 Skill 完成小程序搭建、界面设计与创作流程协同">
             <div class="skill__top"><span class="skill__name">Codex / Pencil</span><span class="skill__level">88%</span></div>
