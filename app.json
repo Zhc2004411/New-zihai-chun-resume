@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/experience/experience",
+    "pages/contact/contact"
+  ],
+  "window": {
+    "navigationBarTitleText": "\u8d44\u6d77\u6625\u7684\u7b80\u5386",
+    "navigationBarBackgroundColor": "#111827",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F5F7FB"
+  },
+  "tabBar": {
+    "color": "#667085",
+    "selectedColor": "#0F766E",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "\u7b80\u5386"
+      },
+      {
+        "pagePath": "pages/experience/experience",
+        "text": "\u7ecf\u5386"
+      },
+      {
+        "pagePath": "pages/contact/contact",
+        "text": "\u8054\u7cfb"
+      }
+    ]
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

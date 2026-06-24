@@ -1,0 +1,51 @@
+<scroll-view class="page" scroll-y="true">
+  <view class="top">
+    <text class="eyebrow">Experience</text>
+    <text class="title">{{ui.experienceTitle}}</text>
+    <text class="intro">{{ui.experienceIntro}}</text>
+  </view>
+
+  <view class="section">
+    <view class="section__header">
+      <text class="section__title">{{ui.practiceTitle}}</text>
+      <text class="section__meta">Practice</text>
+    </view>
+    <text class="section__hint">{{ui.projectHint}}</text>
+    <view class="project-list">
+      <view wx:for="{{projects}}" wx:key="title" class="project {{activeProject == index ? 'project--active' : ''}}" bindtap="toggleProject" data-index="{{index}}" hover-class="tap-card">
+        <view class="project__head">
+          <text class="project__type">{{item.type}}</text>
+          <text class="project__toggle">{{activeProject == index ? ui.foldDetail : ui.expandDetail}}</text>
+        </view>
+        <view class="project__title-row">
+          <text class="project__title">{{item.title}}</text>
+        </view>
+        <text class="project__desc">{{item.desc}}</text>
+        <view wx:if="{{activeProject == index}}" class="project__points">
+          <text wx:for="{{item.points}}" wx:for-item="point" wx:key="*this" class="point">{{point}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section__header">
+      <text class="section__title">{{ui.awardsTitle}}</text>
+      <text class="section__meta">Awards</text>
+    </view>
+    <view class="award-list">
+      <view wx:for="{{awards}}" wx:key="title" class="award">
+        <text class="award__index">0{{index + 1}}</text>
+        <view class="award__body">
+          <text class="award__title">{{item.title}}</text>
+          <text class="award__detail">{{item.detail}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-card">
+    <text class="bottom-card__title">{{profile.camera}}</text>
+    <text class="bottom-card__desc">{{ui.equipmentDesc}}</text>
+  </view>
+</scroll-view>

@@ -1,0 +1,41 @@
+<view class="page">
+  <view class="card">
+    <view class="avatar">{{ui.initial}}</view>
+    <text class="name">{{profile.name}}</text>
+    <text class="role">{{profile.role}}</text>
+    <view class="target-row">
+      <text wx:for="{{targets}}" wx:key="*this" class="target">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <text class="section__title">{{ui.contactTitle}}</text>
+    <view class="contact-line contact-line--active" bindtap="copyPhone" hover-class="tap-card">
+      <text class="label">{{ui.phoneLabel}}</text>
+      <text class="value">{{profile.phone}}</text>
+    </view>
+    <view class="contact-line contact-line--active" bindtap="copyEmail" hover-class="tap-card">
+      <text class="label">{{ui.emailLabel}}</text>
+      <text class="value">{{profile.email}}</text>
+    </view>
+    <view class="contact-line contact-line--active" bindtap="copyLocation" hover-class="tap-card">
+      <text class="label">{{ui.locationLabel}}</text>
+      <text class="value">{{profile.location}}</text>
+    </view>
+    <view class="contact-line">
+      <text class="label">{{ui.salaryLabel}}</text>
+      <text class="value">{{profile.salary}}</text>
+    </view>
+  </view>
+
+  <view class="actions">
+    <button class="button button--primary" bindtap="callPhone" hover-class="button-hover">{{ui.callPhone}}</button>
+    <button class="button" bindtap="copyPhone" hover-class="button-hover">{{ui.copyPhone}}</button>
+    <button class="button" bindtap="copyEmail" hover-class="button-hover">{{ui.copyEmail}}</button>
+  </view>
+
+  <view class="note">
+    <text class="note__title">{{ui.interviewTitle}}</text>
+    <text class="note__text">{{ui.interviewText}}</text>
+  </view>
+</view>

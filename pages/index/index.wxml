@@ -1,0 +1,107 @@
+<scroll-view class="page" scroll-y="true">
+  <view class="hero">
+    <image class="hero__image" src="{{heroImage}}" mode="aspectFill"></image>
+    <view class="hero__shade"></view>
+    <view class="hero__content">
+      <view class="profile-chip">
+        <text class="profile-chip__avatar">{{ui.initial}}</text>
+        <text class="profile-chip__text">{{ui.profileTag}}</text>
+      </view>
+      <text class="hero__name">{{profile.name}}</text>
+      <text class="hero__role">{{profile.role}}</text>
+      <text class="hero__slogan">{{profile.slogan}}</text>
+      <view class="hero__actions">
+        <button class="action action--primary" bindtap="callPhone" hover-class="button-hover">{{ui.callPhone}}</button>
+        <button class="action" bindtap="copyEmail" hover-class="button-hover">{{ui.copyEmail}}</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="content">
+    <view class="metrics">
+      <view class="metric metric--salary">
+        <text class="metric__value">{{profile.salary}}</text>
+        <text class="metric__label">{{ui.salaryLabel}}</text>
+      </view>
+      <view wx:for="{{metrics}}" wx:key="label" class="metric">
+        <text class="metric__value">{{item.value}}</text>
+        <text class="metric__label">{{item.label}}</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section__header">
+        <text class="section__title">{{ui.targetTitle}}</text>
+        <text class="section__meta">Target</text>
+      </view>
+      <view class="target-grid">
+        <view wx:for="{{roles}}" wx:key="title" class="role-card" hover-class="tap-card">
+          <view class="role-card__head">
+            <text class="role-card__icon">{{index + 1}}</text>
+            <text class="role-card__title">{{item.title}}</text>
+          </view>
+          <text class="role-card__desc">{{item.desc}}</text>
+          <view class="mini-tags">
+            <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" class="mini-tag">{{tag}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section__header">
+        <text class="section__title">{{ui.profileTitle}}</text>
+        <text class="section__meta">Profile</text>
+      </view>
+      <view class="highlight-list">
+        <view wx:for="{{highlights}}" wx:key="*this" class="highlight">
+          <text class="highlight__mark"></text>
+          <text class="highlight__text">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section__header">
+        <text class="section__title">{{ui.educationTitle}}</text>
+        <text class="section__meta">Education</text>
+      </view>
+      <view class="education">
+        <text class="education__school">{{profile.school}}</text>
+        <text class="education__line">{{profile.college}}</text>
+        <text class="education__line">{{profile.major}}</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section__header">
+        <text class="section__title">{{ui.skillsTitle}}</text>
+        <text class="section__meta">Skills</text>
+      </view>
+      <text class="section__hint">{{ui.skillHint}}</text>
+      <view class="skill-list">
+        <view wx:for="{{skills}}" wx:key="name" class="skill" bindtap="showSkill" data-name="{{item.name}}" data-desc="{{item.desc}}" hover-class="tap-card">
+          <view class="skill__top">
+            <text class="skill__name">{{item.name}}</text>
+            <view class="skill__right">
+              <text class="skill__level">{{item.level}}%</text>
+              <text class="skill__open">INFO</text>
+            </view>
+          </view>
+          <view class="skill__bar">
+            <view class="skill__bar-fill" style="width: {{item.level}}%;"></view>
+          </view>
+          <text class="skill__desc">{{item.desc}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="section section--dark">
+      <text class="section--dark__title">{{ui.fitTitle}}</text>
+      <view class="fit-list">
+        <text wx:for="{{fit}}" wx:key="*this" class="fit-item">{{item}}</text>
+      </view>
+      <button class="dark-action" bindtap="goExperience" hover-class="button-hover">{{ui.viewExperience}}</button>
+    </view>
+  </view>
+</scroll-view>
