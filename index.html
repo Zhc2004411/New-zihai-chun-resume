@@ -1,0 +1,1148 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="资海春个人简历网站，求职摄影师、剪辑后期、新媒体运营岗位。" />
+    <meta property="og:title" content="资海春个人简历" />
+    <meta property="og:description" content="摄影师 / 剪辑后期 / 新媒体运营，视觉传播设计与新媒体内容创作方向。" />
+    <meta property="og:image" content="assets/resume-hero.webp" />
+    <title>资海春个人简历</title>
+    <style>
+      :root {
+        --ink: #111827;
+        --muted: #667085;
+        --line: rgba(255, 255, 255, 0.68);
+        --paper: rgba(255, 255, 255, 0.72);
+        --dark: rgba(17, 24, 39, 0.9);
+        --amber: #f59e0b;
+        --teal: #0f766e;
+        --bg: #edf3f8;
+        --shadow: 0 22px 60px rgba(17, 24, 39, 0.1);
+        --radius: 22px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 15% 0%, rgba(15, 118, 110, 0.18), transparent 28%),
+          radial-gradient(circle at 84% 12%, rgba(245, 158, 11, 0.2), transparent 30%),
+          linear-gradient(180deg, #e7edf4 0%, #f8fafc 45%, #eef4f7 100%);
+        color: #172033;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .shell {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(18px) saturate(150%);
+        -webkit-backdrop-filter: blur(18px) saturate(150%);
+        background: rgba(248, 250, 252, 0.78);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.72);
+      }
+
+      .topbar__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        min-height: 68px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 900;
+        text-decoration: none;
+      }
+
+      .brand__mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: var(--amber);
+        color: var(--ink);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav a,
+      .ghost-button {
+        border: 1px solid transparent;
+        border-radius: 999px;
+        padding: 10px 14px;
+        color: #344054;
+        font-size: 14px;
+        font-weight: 800;
+        text-decoration: none;
+        transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+      }
+
+      .nav a:hover,
+      .ghost-button:hover {
+        background: rgba(255, 255, 255, 0.72);
+        color: var(--ink);
+        transform: translateY(-1px);
+      }
+
+      .hero {
+        position: relative;
+        min-height: 680px;
+        padding: 74px 0 42px;
+        overflow: hidden;
+        color: #fff;
+        background: #111827;
+        border-bottom-left-radius: 34px;
+        border-bottom-right-radius: 34px;
+        box-shadow: 0 24px 70px rgba(17, 24, 39, 0.22);
+      }
+
+      .hero__image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.7;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(17, 24, 39, 0.95), rgba(17, 24, 39, 0.68) 45%, rgba(17, 24, 39, 0.26));
+      }
+
+      .hero__content {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.65fr);
+        gap: 34px;
+        align-items: end;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        max-width: 100%;
+        padding: 9px 14px 9px 9px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32);
+        backdrop-filter: blur(18px) saturate(150%);
+        -webkit-backdrop-filter: blur(18px) saturate(150%);
+      }
+
+      .chip__mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: var(--amber);
+        color: var(--ink);
+        font-weight: 900;
+      }
+
+      h1 {
+        margin: 28px 0 0;
+        font-size: clamp(52px, 9vw, 100px);
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+
+      .hero__role {
+        margin: 18px 0 0;
+        color: #fde68a;
+        font-size: clamp(22px, 3vw, 34px);
+        line-height: 1.35;
+        font-weight: 900;
+      }
+
+      .hero__summary {
+        max-width: 760px;
+        margin: 18px 0 0;
+        color: #e5e7eb;
+        font-size: 18px;
+        line-height: 1.8;
+      }
+
+      .hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 30px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 20px;
+        border: 1px solid rgba(255, 255, 255, 0.58);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.74);
+        color: var(--ink);
+        font-weight: 900;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.86), 0 16px 36px rgba(0, 0, 0, 0.14);
+        backdrop-filter: blur(18px) saturate(150%);
+        -webkit-backdrop-filter: blur(18px) saturate(150%);
+        transition: transform 160ms ease, opacity 160ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .button:active {
+        transform: translateY(1px) scale(0.99);
+      }
+
+      .button--primary {
+        background: rgba(245, 158, 11, 0.9);
+        border-color: rgba(255, 225, 164, 0.6);
+      }
+
+      .hero-card {
+        padding: 26px;
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.16);
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.26), 0 24px 58px rgba(0, 0, 0, 0.18);
+        backdrop-filter: blur(24px) saturate(145%);
+        -webkit-backdrop-filter: blur(24px) saturate(145%);
+      }
+
+      .hero-card__row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      }
+
+      .hero-card__row:last-child {
+        border-bottom: 0;
+      }
+
+      .hero-card__label {
+        color: #d1d5db;
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .hero-card__value {
+        color: #fff;
+        font-size: 18px;
+        font-weight: 900;
+        text-align: right;
+      }
+
+      main {
+        padding: 28px 0 72px;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: 1.2fr repeat(4, 1fr);
+        gap: 14px;
+        margin-top: -64px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .metric,
+      .section,
+      .mini-card,
+      .project,
+      .award,
+      .contact-card {
+        border: 1px solid var(--line);
+        background: var(--paper);
+        box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(24px) saturate(160%);
+        -webkit-backdrop-filter: blur(24px) saturate(160%);
+      }
+
+      .metric {
+        min-height: 112px;
+        padding: 20px;
+        border-radius: 18px;
+        text-align: center;
+      }
+
+      .metric--dark {
+        background: var(--dark);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: #fff;
+      }
+
+      .metric__value {
+        display: block;
+        color: var(--ink);
+        font-size: 34px;
+        line-height: 1;
+        font-weight: 900;
+      }
+
+      .metric--dark .metric__value {
+        color: var(--amber);
+        font-size: 42px;
+      }
+
+      .metric__label {
+        display: block;
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.45;
+        font-weight: 700;
+      }
+
+      .metric--dark .metric__label {
+        color: #e5e7eb;
+      }
+
+      .section {
+        margin-top: 22px;
+        padding: 30px;
+        border-radius: var(--radius);
+      }
+
+      .section__header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 22px;
+      }
+
+      h2 {
+        margin: 0;
+        color: var(--ink);
+        font-size: clamp(26px, 3vw, 34px);
+        line-height: 1.2;
+      }
+
+      .section__meta {
+        color: #98a2b3;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .mini-card {
+        padding: 22px;
+        border-radius: 16px;
+        transition: transform 160ms ease, border-color 160ms ease;
+      }
+
+      .mini-card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(15, 118, 110, 0.28);
+      }
+
+      .mini-card__index {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: var(--ink);
+        color: var(--amber);
+        font-weight: 900;
+      }
+
+      .mini-card h3 {
+        margin: 16px 0 10px;
+        color: var(--ink);
+        font-size: 22px;
+      }
+
+      .mini-card p,
+      .text-list li,
+      .education p,
+      .project p,
+      .award p,
+      .contact-card p {
+        color: #475467;
+        line-height: 1.78;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .tag {
+        padding: 8px 11px;
+        border-radius: 8px;
+        background: rgba(236, 253, 245, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.64);
+        color: var(--teal);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .text-list {
+        display: grid;
+        gap: 14px;
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .education {
+        display: grid;
+        gap: 8px;
+      }
+
+      .education strong {
+        color: var(--ink);
+        font-size: 22px;
+      }
+
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .skill {
+        padding: 20px;
+        border-radius: 16px;
+        background: rgba(248, 250, 252, 0.62);
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        cursor: pointer;
+        transition: transform 160ms ease, border-color 160ms ease;
+      }
+
+      .skill:hover {
+        transform: translateY(-3px);
+        border-color: rgba(15, 118, 110, 0.26);
+      }
+
+      .skill__top {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .skill__name {
+        color: var(--ink);
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      .skill__level {
+        color: var(--teal);
+        font-weight: 900;
+      }
+
+      .skill__bar {
+        height: 9px;
+        margin-top: 14px;
+        border-radius: 999px;
+        overflow: hidden;
+        background: rgba(229, 231, 235, 0.82);
+      }
+
+      .skill__fill {
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--amber), var(--teal));
+      }
+
+      .skill p {
+        margin: 12px 0 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .projects {
+        display: grid;
+        gap: 14px;
+      }
+
+      .project {
+        border-radius: 16px;
+        padding: 22px;
+        cursor: pointer;
+        transition: transform 160ms ease, border-color 160ms ease;
+      }
+
+      .project:hover {
+        transform: translateY(-2px);
+        border-color: rgba(15, 118, 110, 0.28);
+      }
+
+      .project__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .project__type {
+        display: inline-flex;
+        padding: 7px 11px;
+        border-radius: 8px;
+        background: rgba(255, 247, 237, 0.78);
+        color: #c2410c;
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .project__toggle {
+        color: var(--teal);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .project h3 {
+        margin: 16px 0 8px;
+        color: var(--ink);
+        font-size: 22px;
+      }
+
+      .project__points {
+        display: none;
+      }
+
+      .project.is-open .project__points {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .awards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .award {
+        display: flex;
+        gap: 14px;
+        padding: 18px;
+        border-radius: 16px;
+      }
+
+      .award__index {
+        color: var(--amber);
+        font-weight: 900;
+      }
+
+      .award h3 {
+        margin: 0 0 6px;
+        color: var(--ink);
+        font-size: 17px;
+      }
+
+      .award p {
+        margin: 0;
+      }
+
+      .section--dark {
+        background: var(--dark);
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+
+      .section--dark h2,
+      .section--dark p,
+      .section--dark li {
+        color: #fff;
+      }
+
+      .section--dark .text-list li {
+        color: #e5e7eb;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .contact-card {
+        padding: 18px;
+        border-radius: 16px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 160ms ease, border-color 160ms ease;
+      }
+
+      button.contact-card {
+        width: 100%;
+        font: inherit;
+        text-align: left;
+        appearance: none;
+        -webkit-appearance: none;
+      }
+
+      .contact-card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(15, 118, 110, 0.28);
+      }
+
+      .contact-card span {
+        display: block;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .contact-card strong {
+        display: block;
+        margin-top: 8px;
+        color: var(--ink);
+        line-height: 1.45;
+        word-break: break-word;
+      }
+
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 26px;
+        z-index: 40;
+        padding: 12px 16px;
+        border-radius: 999px;
+        background: rgba(17, 24, 39, 0.92);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 800;
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(-50%, 12px);
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .toast.is-visible {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        display: none;
+        place-items: center;
+        padding: 24px;
+        background: rgba(17, 24, 39, 0.46);
+      }
+
+      .modal.is-open {
+        display: grid;
+      }
+
+      .modal__card {
+        width: min(460px, 100%);
+        padding: 26px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.82);
+        box-shadow: 0 30px 90px rgba(17, 24, 39, 0.25);
+        backdrop-filter: blur(24px) saturate(160%);
+        -webkit-backdrop-filter: blur(24px) saturate(160%);
+      }
+
+      .modal__card h3 {
+        margin: 0;
+        color: var(--ink);
+        font-size: 24px;
+      }
+
+      .modal__card p {
+        margin: 14px 0 22px;
+        color: #475467;
+        line-height: 1.75;
+      }
+
+      .footer {
+        padding: 28px 0 46px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      @media (max-width: 920px) {
+        .hero {
+          min-height: auto;
+        }
+
+        .hero__content {
+          grid-template-columns: 1fr;
+        }
+
+        .metrics {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .metric--dark {
+          grid-column: span 2;
+        }
+
+        .grid-3,
+        .awards,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .topbar {
+          position: static;
+        }
+
+        .topbar__inner {
+          min-height: auto;
+          padding: 14px 0;
+          align-items: flex-start;
+        }
+
+        .nav {
+          justify-content: flex-end;
+          flex-wrap: wrap;
+        }
+
+        .nav a {
+          padding: 8px 9px;
+          font-size: 12px;
+        }
+
+        .hero {
+          padding: 52px 0 34px;
+          border-bottom-left-radius: 26px;
+          border-bottom-right-radius: 26px;
+        }
+
+        .hero::after {
+          background: linear-gradient(180deg, rgba(17, 24, 39, 0.34), rgba(17, 24, 39, 0.98));
+        }
+
+        .hero__summary {
+          font-size: 16px;
+        }
+
+        .hero__actions,
+        .button {
+          width: 100%;
+        }
+
+        .hero-card {
+          padding: 20px;
+        }
+
+        .metrics,
+        .skills {
+          grid-template-columns: 1fr;
+        }
+
+        .metric--dark {
+          grid-column: auto;
+        }
+
+        .section {
+          padding: 22px;
+        }
+
+        .section__header {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 6px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell topbar__inner">
+        <a class="brand" href="#top" aria-label="返回顶部">
+          <span class="brand__mark">资</span>
+          <span>资海春</span>
+        </a>
+        <nav class="nav" aria-label="页面导航">
+          <a href="#profile">优势</a>
+          <a href="#skills">技能</a>
+          <a href="#projects">经历</a>
+          <a href="#awards">荣誉</a>
+          <a href="#contact">联系</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero" id="top">
+      <img class="hero__image" src="assets/resume-hero.webp" alt="资海春个人简历视觉封面" />
+      <div class="shell hero__content">
+        <div>
+          <div class="chip">
+            <span class="chip__mark">资</span>
+            <span>视觉传播设计 / 新媒体方向</span>
+          </div>
+          <h1>资海春</h1>
+          <div class="hero__role">摄影师 / 剪辑后期 / 新媒体运营</div>
+          <p class="hero__summary">
+            毕业于湖南工艺美术职业大学视觉传播设计学院，广告艺术设计（新媒体传播与策划方向）。能够围绕拍摄、剪辑、视觉设计、脚本和文案完成新媒体内容生产闭环。
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="tel:18273496710">拨打电话</a>
+            <a class="button" href="mailto:1273496710@163.com">发送邮件</a>
+            <button class="button" type="button" data-copy="1273496710@163.com">复制邮箱</button>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="基础信息">
+          <div class="hero-card__row">
+            <span class="hero-card__label">所在地</span>
+            <strong class="hero-card__value">广东广州海珠区</strong>
+          </div>
+          <div class="hero-card__row">
+            <span class="hero-card__label">期望薪资</span>
+            <strong class="hero-card__value">7-10K</strong>
+          </div>
+          <div class="hero-card__row">
+            <span class="hero-card__label">拍摄设备</span>
+            <strong class="hero-card__value">自带 Sony 相机</strong>
+          </div>
+          <div class="hero-card__row">
+            <span class="hero-card__label">联系方式</span>
+            <strong class="hero-card__value">18273496710</strong>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <main class="shell">
+      <section class="metrics" aria-label="简历亮点">
+        <div class="metric metric--dark">
+          <span class="metric__value">7-10K</span>
+          <span class="metric__label">期望薪资</span>
+        </div>
+        <div class="metric">
+          <span class="metric__value">3次</span>
+          <span class="metric__label">校级优秀学生干部</span>
+        </div>
+        <div class="metric">
+          <span class="metric__value">2次</span>
+          <span class="metric__label">校级三好学生</span>
+        </div>
+        <div class="metric">
+          <span class="metric__value">2次</span>
+          <span class="metric__label">二等综合奖学金</span>
+        </div>
+        <div class="metric">
+          <span class="metric__value">1次</span>
+          <span class="metric__label">国家励志奖学金</span>
+        </div>
+      </section>
+
+      <section class="section" id="profile">
+        <div class="section__header">
+          <h2>个人优势</h2>
+          <span class="section__meta">Profile</span>
+        </div>
+        <ul class="text-list">
+          <li>视觉传播设计与新媒体传播策划专业背景，理解画面表现、内容传播和用户注意力之间的关系。</li>
+          <li>能够独立完成拍摄、素材整理、剪辑、字幕包装、基础动效和短视频成片输出。</li>
+          <li>熟练使用 Codex 与 Pencil，能够调用 Skill 完成代码生成、界面设计和创作流程协同。</li>
+          <li>熟练使用即梦、海螺、小云雀、ChatGPT 等 AI 工具，辅助视频创作、脚本撰写和文案编写。</li>
+          <li>长期担任学生干部并多次获评优秀，具备稳定的执行力、沟通协调能力和项目推进意识。</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="section__header">
+          <h2>求职方向</h2>
+          <span class="section__meta">Target</span>
+        </div>
+        <div class="grid-3">
+          <article class="mini-card">
+            <span class="mini-card__index">01</span>
+            <h3>摄影师</h3>
+            <p>熟悉相机基础设置、构图、光线判断与现场执行，可承担人物、活动、产品和新媒体素材拍摄。</p>
+            <div class="tags">
+              <span class="tag">Sony 相机</span>
+              <span class="tag">构图</span>
+              <span class="tag">现场执行</span>
+            </div>
+          </article>
+          <article class="mini-card">
+            <span class="mini-card__index">02</span>
+            <h3>剪辑后期</h3>
+            <p>能够使用 PR、AE、剪映完成视频节奏处理、字幕包装、基础动效和成片输出。</p>
+            <div class="tags">
+              <span class="tag">PR</span>
+              <span class="tag">AE</span>
+              <span class="tag">剪映</span>
+            </div>
+          </article>
+          <article class="mini-card">
+            <span class="mini-card__index">03</span>
+            <h3>新媒体运营</h3>
+            <p>可参与选题策划、视觉设计、内容制作与账号更新，适合内容生产和传播执行岗位。</p>
+            <div class="tags">
+              <span class="tag">选题</span>
+              <span class="tag">内容策划</span>
+              <span class="tag">视觉执行</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section__header">
+          <h2>教育背景</h2>
+          <span class="section__meta">Education</span>
+        </div>
+        <div class="education">
+          <strong>湖南工艺美术职业大学</strong>
+          <p>视觉传播设计学院</p>
+          <p>广告艺术设计（新媒体传播与策划方向）</p>
+        </div>
+      </section>
+
+      <section class="section" id="skills">
+        <div class="section__header">
+          <h2>技能矩阵</h2>
+          <span class="section__meta">Click Skill</span>
+        </div>
+        <div class="skills">
+          <article class="skill" data-title="Illustrator" data-desc="海报、图形、版式与视觉物料设计">
+            <div class="skill__top"><span class="skill__name">Illustrator</span><span class="skill__level">92%</span></div>
+            <div class="skill__bar"><div class="skill__fill" style="width: 92%"></div></div>
+            <p>海报、图形、版式与视觉物料设计</p>
+          </article>
+          <article class="skill" data-title="Photoshop" data-desc="图片处理、修图、合成与视觉优化">
+            <div class="skill__top"><span class="skill__name">Photoshop</span><span class="skill__level">90%</span></div>
+            <div class="skill__bar"><div class="skill__fill" style="width: 90%"></div></div>
+            <p>图片处理、修图、合成与视觉优化</p>
+          </article>
+          <article class="skill" data-title="Premiere Pro" data-desc="剪辑、节奏控制、字幕与视频输出">
+            <div class="skill__top"><span class="skill__name">Premiere Pro</span><span class="skill__level">82%</span></div>
+            <div class="skill__bar"><div class="skill__fill" style="width: 82%"></div></div>
+            <p>剪辑、节奏控制、字幕与视频输出</p>
+          </article>
+          <article class="skill" data-title="After Effects" data-desc="基础动效、包装、转场与画面增强">
+            <div class="skill__top"><span class="skill__name">After Effects</span><span class="skill__level">76%</span></div>
+            <div class="skill__bar"><div class="skill__fill" style="width: 76%"></div></div>
+            <p>基础动效、包装、转场与画面增强</p>
+          </article>
+          <article class="skill" data-title="剪映" data-desc="移动端短视频剪辑与快速成片">
+            <div class="skill__top"><span class="skill__name">剪映</span><span class="skill__level">88%</span></div>
+            <div class="skill__bar"><div class="skill__fill" style="width: 88%"></div></div>
+            <p>移动端短视频剪辑与快速成片</p>
+          </article>
+          <article class="skill" data-title="相机拍摄" data-desc="熟练使用相机，自带 Sony 相机">
+            <div class="skill__top"><span class="skill__name">相机拍摄</span><span class="skill__level">86%</span></div>
+            <div class="skill__bar"><div class="skill__fill" style="width: 86%"></div></div>
+            <p>熟练使用相机，自带 Sony 相机</p>
+          </article>
+          <article class="skill" data-title="Codex / Pencil" data-desc="熟练使用 Codex 和 Pencil，能够调用 Skill 完成小程序搭建、界面设计与创作流程协同">
+            <div class="skill__top"><span class="skill__name">Codex / Pencil</span><span class="skill__level">88%</span></div>
+            <div class="skill__bar"><div class="skill__fill" style="width: 88%"></div></div>
+            <p>调用 Skill，完成代码生成、界面设计与创作流程协同</p>
+          </article>
+          <article class="skill" data-title="AI 创作工具" data-desc="熟练使用即梦、海螺、小云雀、ChatGPT 等 AI 工具进行视频创作、脚本撰写与文案编写">
+            <div class="skill__top"><span class="skill__name">AI 创作工具</span><span class="skill__level">90%</span></div>
+            <div class="skill__bar"><div class="skill__fill" style="width: 90%"></div></div>
+            <p>即梦、海螺、小云雀、ChatGPT 等 AI 工具创作</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section__header">
+          <h2>项目型经历</h2>
+          <span class="section__meta">Click Project</span>
+        </div>
+        <div class="projects">
+          <article class="project is-open">
+            <div class="project__head"><span class="project__type">摄影执行</span><span class="project__toggle">收起</span></div>
+            <h3>校园与活动影像记录</h3>
+            <p>可围绕活动现场、人物形象、宣传素材完成拍摄，注重画面信息完整度和传播可用性。</p>
+            <div class="project__points">
+              <span class="tag">前期沟通拍摄需求</span><span class="tag">现场抓拍与构图</span><span class="tag">素材筛选与基础修图</span>
+            </div>
+          </article>
+          <article class="project">
+            <div class="project__head"><span class="project__type">剪辑后期</span><span class="project__toggle">展开</span></div>
+            <h3>短视频剪辑与后期制作</h3>
+            <p>可按主题完成素材整理、节奏剪辑、字幕包装、音乐匹配和导出发布。</p>
+            <div class="project__points">
+              <span class="tag">素材归类</span><span class="tag">节奏处理</span><span class="tag">字幕与基础动效</span>
+            </div>
+          </article>
+          <article class="project">
+            <div class="project__head"><span class="project__type">内容运营</span><span class="project__toggle">展开</span></div>
+            <h3>新媒体视觉内容策划</h3>
+            <p>结合广告艺术设计与新媒体传播方向训练，参与内容选题、视觉设计和传播表达。</p>
+            <div class="project__points">
+              <span class="tag">选题策划</span><span class="tag">视觉物料设计</span><span class="tag">账号内容更新</span>
+            </div>
+          </article>
+          <article class="project">
+            <div class="project__head"><span class="project__type">AI 创作</span><span class="project__toggle">展开</span></div>
+            <h3>AI 辅助视频与文案创作</h3>
+            <p>运用 Codex、Pencil 及即梦、海螺、小云雀、ChatGPT 等工具，参与创意构思、脚本撰写、文案编写、视觉设计和视频内容生产。</p>
+            <div class="project__points">
+              <span class="tag">AI 工具选型与提示词沟通</span><span class="tag">脚本与分镜思路整理</span><span class="tag">视频创作与文案产出</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="awards">
+        <div class="section__header">
+          <h2>荣誉奖项</h2>
+          <span class="section__meta">Awards</span>
+        </div>
+        <div class="awards">
+          <article class="award"><span class="award__index">01</span><div><h3>校级优秀学生干部</h3><p>累计三次获得，体现组织协调与执行能力。</p></div></article>
+          <article class="award"><span class="award__index">02</span><div><h3>校级三好学生</h3><p>累计两次获得，学习表现与综合素质稳定。</p></div></article>
+          <article class="award"><span class="award__index">03</span><div><h3>校级二等综合奖学金</h3><p>累计两次获得，专业学习与综合表现突出。</p></div></article>
+          <article class="award"><span class="award__index">04</span><div><h3>国家励志奖学金</h3><p>获得一次，代表学习态度与成长潜力。</p></div></article>
+          <article class="award"><span class="award__index">05</span><div><h3>院级“金种子杯”一等奖</h3><p>体现视觉创意、设计表达和专业实践能力。</p></div></article>
+          <article class="award"><span class="award__index">06</span><div><h3>中国创意包装大赛优秀奖</h3><p>具备创意包装、品牌视觉与竞赛实践经历。</p></div></article>
+        </div>
+      </section>
+
+      <section class="section section--dark">
+        <div class="section__header">
+          <h2>岗位匹配结论</h2>
+          <span class="section__meta">Fit</span>
+        </div>
+        <ul class="text-list">
+          <li>适合需要拍摄、剪辑、设计和内容运营一体化执行的岗位。</li>
+          <li>适合短视频、品牌传播、校园/企业宣传、活动影像与新媒体账号内容生产。</li>
+          <li>具备 AI 工具辅助创作能力，可将脚本、文案、视觉设计和视频生成流程接入日常内容生产。</li>
+          <li>自带拍摄设备，入职后能更快进入素材生产和内容交付节奏。</li>
+        </ul>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="section__header">
+          <h2>联系方式</h2>
+          <span class="section__meta">Contact</span>
+        </div>
+        <div class="contact-grid">
+          <a class="contact-card" href="tel:18273496710"><span>电话</span><strong>18273496710</strong></a>
+          <a class="contact-card" href="mailto:1273496710@163.com"><span>邮箱</span><strong>1273496710@163.com</strong></a>
+          <button class="contact-card" type="button" data-copy="广东广州海珠区"><span>所在地</span><strong>广东广州海珠区</strong></button>
+          <button class="contact-card" type="button" data-copy="期望薪资 7-10K"><span>期望薪资</span><strong>7-10K</strong></button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell">© 资海春个人简历网站</div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">已复制</div>
+
+    <div class="modal" id="skillModal" aria-hidden="true">
+      <div class="modal__card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <h3 id="modalTitle">技能详情</h3>
+        <p id="modalDesc"></p>
+        <button class="button button--primary" type="button" id="modalClose">知道了</button>
+      </div>
+    </div>
+
+    <script>
+      const toast = document.querySelector("#toast");
+      const modal = document.querySelector("#skillModal");
+      const modalTitle = document.querySelector("#modalTitle");
+      const modalDesc = document.querySelector("#modalDesc");
+      const modalClose = document.querySelector("#modalClose");
+
+      function showToast(text) {
+        toast.textContent = text;
+        toast.classList.add("is-visible");
+        window.clearTimeout(showToast.timer);
+        showToast.timer = window.setTimeout(() => toast.classList.remove("is-visible"), 1500);
+      }
+
+      async function copyText(text) {
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast("已复制：" + text);
+        } catch (error) {
+          showToast("当前浏览器不支持自动复制");
+        }
+      }
+
+      document.querySelectorAll("[data-copy]").forEach((item) => {
+        item.addEventListener("click", () => copyText(item.dataset.copy));
+      });
+
+      document.querySelectorAll(".skill").forEach((item) => {
+        item.addEventListener("click", () => {
+          modalTitle.textContent = item.dataset.title;
+          modalDesc.textContent = item.dataset.desc;
+          modal.classList.add("is-open");
+          modal.setAttribute("aria-hidden", "false");
+        });
+      });
+
+      document.querySelectorAll(".project").forEach((item) => {
+        item.addEventListener("click", () => {
+          const isOpen = item.classList.toggle("is-open");
+          item.querySelector(".project__toggle").textContent = isOpen ? "收起" : "展开";
+        });
+      });
+
+      function closeModal() {
+        modal.classList.remove("is-open");
+        modal.setAttribute("aria-hidden", "true");
+      }
+
+      modalClose.addEventListener("click", closeModal);
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) closeModal();
+      });
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeModal();
+      });
+    </script>
+  </body>
+</html>
