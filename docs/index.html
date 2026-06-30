@@ -27,7 +27,7 @@
         --panel-text: #dce8f7;
         --bg: #070a12;
         --shadow: var(--glass-shadow);
-        --radius: 22px;
+        --radius: 8px;
         --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
         --fs-caption: 13px;
         --fs-small: 14px;
@@ -64,6 +64,7 @@
         font-size: var(--fs-body);
         line-height: var(--lh-body);
         font-weight: var(--fw-regular);
+        overflow-x: hidden;
       }
 
       body::before {
@@ -99,6 +100,20 @@
         border-bottom: 1px solid var(--glass-border);
       }
 
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 40;
+        width: 100%;
+        height: 3px;
+        transform: scaleX(0);
+        transform-origin: left center;
+        background: linear-gradient(90deg, var(--accent), var(--lime), var(--rose));
+        box-shadow: 0 0 14px rgba(124, 247, 255, 0.55);
+        pointer-events: none;
+      }
+
       .topbar__inner {
         display: flex;
         align-items: center;
@@ -126,6 +141,34 @@
         box-shadow: 0 0 24px rgba(124, 247, 255, 0.34);
       }
 
+      .topbar__status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-left: auto;
+        color: #c8d6e8;
+        font-size: var(--fs-caption);
+        font-weight: var(--fw-bold);
+        white-space: nowrap;
+      }
+
+      .topbar__status::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--lime);
+        box-shadow: 0 0 12px rgba(167, 244, 106, 0.7);
+        animation: statusPulse 2.2s ease-in-out infinite;
+      }
+
+      @keyframes statusPulse {
+        50% {
+          opacity: 0.45;
+          box-shadow: 0 0 4px rgba(167, 244, 106, 0.35);
+        }
+      }
+
       .nav {
         display: flex;
         align-items: center;
@@ -145,11 +188,17 @@
       }
 
       .nav a:hover,
+      .nav a.is-active,
       .ghost-button:hover {
         background: rgba(124, 247, 255, 0.1);
         border-color: rgba(124, 247, 255, 0.24);
         color: var(--accent);
         transform: translateY(-1px);
+      }
+
+      .nav a.is-active {
+        background: rgba(124, 247, 255, 0.12);
+        border-color: rgba(124, 247, 255, 0.32);
       }
 
       .hero {
@@ -172,6 +221,9 @@
         object-fit: cover;
         opacity: 0.38;
         filter: contrast(1.08) saturate(1.06);
+        transform: scale(1.035);
+        transition: transform 220ms ease-out;
+        will-change: transform;
       }
 
       .hero::after {
@@ -190,6 +242,10 @@
         grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.65fr);
         gap: 34px;
         align-items: end;
+      }
+
+      .hero__content > * {
+        min-width: 0;
       }
 
       .chip {
@@ -274,6 +330,53 @@
         color: #ffe2f4;
       }
 
+      .vibe-command {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: fit-content;
+        max-width: 100%;
+        margin-top: 14px;
+        padding: 10px 13px;
+        border: 1px solid rgba(124, 247, 255, 0.2);
+        border-radius: 8px;
+        background: rgba(4, 8, 15, 0.72);
+        color: #b9c8dc;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: var(--fs-caption);
+        line-height: 1.4;
+        box-shadow: var(--glass-highlight);
+        overflow: hidden;
+      }
+
+      .vibe-command__prompt {
+        color: var(--lime);
+        font-weight: var(--fw-black);
+        flex: 0 0 auto;
+      }
+
+      .vibe-command__text {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .vibe-command__cursor {
+        width: 7px;
+        height: 16px;
+        flex: 0 0 auto;
+        background: var(--accent);
+        box-shadow: 0 0 12px rgba(124, 247, 255, 0.5);
+        animation: cursorBlink 1s steps(1) infinite;
+      }
+
+      @keyframes cursorBlink {
+        50% {
+          opacity: 0;
+        }
+      }
+
       .hero__actions {
         display: flex;
         flex-wrap: wrap;
@@ -299,6 +402,9 @@
         font-weight: var(--fw-black);
         text-decoration: none;
         cursor: pointer;
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
         box-shadow: var(--glass-highlight), 0 16px 38px rgba(0, 0, 0, 0.26), 0 0 22px rgba(124, 247, 255, 0.08);
         backdrop-filter: blur(18px) saturate(150%);
         -webkit-backdrop-filter: blur(18px) saturate(150%);
@@ -355,6 +461,7 @@
         font-size: var(--fs-lead);
         font-weight: var(--fw-black);
         text-align: right;
+        overflow-wrap: anywhere;
       }
 
       main {
@@ -386,7 +493,7 @@
       .metric {
         min-height: 112px;
         padding: 20px;
-        border-radius: 18px;
+        border-radius: 8px;
         text-align: center;
         position: relative;
         overflow: hidden;
@@ -397,12 +504,15 @@
       .project::after,
       .award::after,
       .contact-card::after,
+      .qr-card::after,
       .skill::after {
         content: "";
         position: absolute;
         inset: 0;
         border-radius: inherit;
-        background: linear-gradient(135deg, rgba(124, 247, 255, 0.16), transparent 32%, rgba(255, 92, 189, 0.1));
+        background:
+          radial-gradient(circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(124, 247, 255, 0.22), transparent 34%),
+          linear-gradient(135deg, rgba(124, 247, 255, 0.1), transparent 32%, rgba(255, 92, 189, 0.08));
         opacity: 0;
         transition: opacity 180ms ease;
         pointer-events: none;
@@ -413,6 +523,7 @@
       .project:hover::after,
       .award:hover::after,
       .contact-card:hover::after,
+      .qr-card:hover::after,
       .skill:hover::after {
         opacity: 1;
       }
@@ -500,7 +611,7 @@
 
       .mini-card {
         padding: 22px;
-        border-radius: 16px;
+        border-radius: 8px;
         position: relative;
         overflow: hidden;
         transition: transform 160ms ease, border-color 160ms ease;
@@ -514,7 +625,7 @@
       .mini-card__index {
         width: 40px;
         height: 40px;
-        border-radius: 12px;
+        border-radius: 8px;
         display: grid;
         place-items: center;
         background: rgba(124, 247, 255, 0.12);
@@ -569,6 +680,133 @@
         gap: 8px;
       }
 
+      .workflow-visual {
+        --flow-progress: 0%;
+        display: grid;
+        gap: 22px;
+      }
+
+      .workflow__steps {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .workflow__step {
+        min-width: 0;
+        padding: 15px 12px;
+        border: 1px solid rgba(124, 247, 255, 0.16);
+        border-radius: 8px;
+        background: rgba(7, 12, 22, 0.62);
+        color: var(--muted);
+        font: inherit;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: var(--glass-highlight);
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, color 180ms ease;
+      }
+
+      .workflow__step:hover,
+      .workflow__step:focus-visible {
+        border-color: rgba(124, 247, 255, 0.42);
+        color: var(--ink);
+        transform: translateY(-2px);
+        outline: none;
+      }
+
+      .workflow__step[aria-selected="true"] {
+        border-color: rgba(124, 247, 255, 0.58);
+        background: linear-gradient(135deg, rgba(124, 247, 255, 0.14), rgba(167, 244, 106, 0.08));
+        color: var(--ink);
+        box-shadow: var(--glass-highlight), 0 0 24px rgba(124, 247, 255, 0.1);
+      }
+
+      .workflow__step-index {
+        display: block;
+        color: var(--accent);
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: var(--fs-caption);
+        font-weight: var(--fw-black);
+      }
+
+      .workflow__step strong {
+        display: block;
+        margin-top: 6px;
+        font-size: var(--fs-body);
+      }
+
+      .workflow__rail {
+        height: 3px;
+        margin: -8px 12.5% 0;
+        border-radius: 999px;
+        background: rgba(124, 247, 255, 0.12);
+        overflow: visible;
+      }
+
+      .workflow__rail span {
+        position: relative;
+        display: block;
+        width: var(--flow-progress);
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--accent), var(--lime), var(--rose));
+        box-shadow: 0 0 16px rgba(124, 247, 255, 0.34);
+        transition: width 520ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .workflow__rail span::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: -5px;
+        width: 10px;
+        height: 10px;
+        border: 2px solid #071018;
+        border-radius: 3px;
+        background: var(--accent);
+        box-shadow: 0 0 14px rgba(124, 247, 255, 0.7);
+        transform: translateY(-50%) rotate(45deg);
+      }
+
+      .workflow__detail {
+        display: grid;
+        grid-template-columns: 150px minmax(0, 1fr);
+        gap: 26px;
+        align-items: center;
+        min-height: 128px;
+        padding-top: 22px;
+        border-top: 1px solid rgba(124, 247, 255, 0.14);
+      }
+
+      .workflow__code {
+        color: var(--lime);
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: var(--fs-small);
+        font-weight: var(--fw-black);
+      }
+
+      .workflow__detail h3 {
+        margin: 0;
+        color: var(--ink);
+        font-size: var(--fs-card-title);
+      }
+
+      .workflow__detail p {
+        margin: 8px 0 0;
+        color: var(--muted);
+      }
+
+      .workflow__detail.is-changing > * {
+        animation: detailSwitch 320ms ease both;
+      }
+
+      @keyframes detailSwitch {
+        from {
+          opacity: 0;
+          transform: translateY(7px);
+        }
+      }
+
       .education strong {
         color: var(--ink);
         font-size: var(--fs-card-title);
@@ -582,7 +820,7 @@
 
       .skill {
         padding: 20px;
-        border-radius: 16px;
+        border-radius: 8px;
         background: var(--glass-soft);
         border: 1px solid var(--glass-border);
         box-shadow: var(--glass-highlight), 0 18px 42px rgba(0, 0, 0, 0.24), 0 0 20px rgba(124, 247, 255, 0.06);
@@ -628,6 +866,17 @@
         border-radius: inherit;
         background: linear-gradient(90deg, var(--accent), var(--lime), var(--rose));
         box-shadow: 0 0 18px rgba(124, 247, 255, 0.28);
+        transform-origin: left center;
+        transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      body.motion-ready .skill__fill {
+        transform: scaleX(0);
+      }
+
+      body.motion-ready .skill.is-revealed .skill__fill {
+        transform: scaleX(1);
+        transition-delay: calc(var(--reveal-delay, 0ms) + 120ms);
       }
 
       .skill p {
@@ -643,7 +892,7 @@
       }
 
       .project {
-        border-radius: 16px;
+        border-radius: 8px;
         padding: 22px;
         cursor: pointer;
         position: relative;
@@ -694,6 +943,14 @@
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
+        animation: projectExpand 260ms ease both;
+      }
+
+      @keyframes projectExpand {
+        from {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
       }
 
       .awards {
@@ -706,7 +963,7 @@
         display: flex;
         gap: 14px;
         padding: 18px;
-        border-radius: 16px;
+        border-radius: 8px;
         position: relative;
         overflow: hidden;
       }
@@ -759,7 +1016,7 @@
         gap: 10px;
         justify-items: center;
         padding: 16px;
-        border-radius: 16px;
+        border-radius: 8px;
         background: var(--paper);
         border: 1px solid var(--glass-border);
         box-shadow: var(--shadow), var(--glass-highlight);
@@ -767,6 +1024,8 @@
         -webkit-backdrop-filter: blur(24px) saturate(160%);
         text-align: center;
         cursor: pointer;
+        position: relative;
+        overflow: hidden;
         font: inherit;
         appearance: none;
         -webkit-appearance: none;
@@ -781,7 +1040,7 @@
       .qr-card img {
         width: 132px;
         height: 132px;
-        border-radius: 12px;
+        border-radius: 8px;
         background: #fff;
         padding: 8px;
       }
@@ -808,7 +1067,7 @@
 
       .contact-card {
         padding: 18px;
-        border-radius: 16px;
+        border-radius: 8px;
         text-decoration: none;
         cursor: pointer;
         position: relative;
@@ -911,7 +1170,41 @@
       }
 
       .is-revealed {
-        animation: floatIn 480ms ease both;
+        animation: floatIn 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation-delay: var(--reveal-delay, 0ms);
+      }
+
+      .is-revealed.reveal-done {
+        animation: none;
+      }
+
+      .tilt-card {
+        transform-style: preserve-3d;
+        will-change: transform;
+      }
+
+      .tilt-card > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .button-ripple {
+        position: absolute;
+        z-index: 1;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.38);
+        pointer-events: none;
+        transform: translate(-50%, -50%) scale(0);
+        animation: ripple 520ms ease-out forwards;
+      }
+
+      @keyframes ripple {
+        to {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(22);
+        }
       }
 
       @keyframes floatIn {
@@ -952,23 +1245,33 @@
 
       @media (max-width: 720px) {
         .topbar {
-          position: static;
+          position: sticky;
         }
 
         .topbar__inner {
           min-height: auto;
           padding: 14px 0;
-          align-items: flex-start;
-        }
-
-        .nav {
-          justify-content: flex-end;
+          align-items: center;
           flex-wrap: wrap;
         }
 
+        .topbar__status {
+          display: none;
+        }
+
+        .nav {
+          display: grid;
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          flex-basis: 100%;
+          min-width: 0;
+          width: 100%;
+          gap: 0;
+        }
+
         .nav a {
-          padding: 8px 9px;
+          padding: 8px 2px;
           font-size: 12px;
+          text-align: center;
         }
 
         .hero {
@@ -985,13 +1288,54 @@
           font-size: 16px;
         }
 
+        .vibe-command {
+          width: 100%;
+        }
+
         .hero__actions,
         .button {
           width: 100%;
         }
 
+        .hero__actions .button {
+          flex: 1 1 100%;
+          min-width: 0;
+        }
+
         .hero-card {
           padding: 20px;
+          min-width: 0;
+        }
+
+        .hero-card__row {
+          align-items: center;
+          flex-direction: column;
+          gap: 5px;
+          text-align: center;
+        }
+
+        .hero-card__label {
+          width: 100%;
+        }
+
+        .hero-card__value {
+          width: 100%;
+          text-align: center;
+        }
+
+        .workflow__steps {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .workflow__rail {
+          margin-right: 0;
+          margin-left: 0;
+        }
+
+        .workflow__detail {
+          grid-template-columns: 1fr;
+          gap: 8px;
+          text-align: center;
         }
 
         .metrics,
@@ -1034,16 +1378,23 @@
           animation: none !important;
           transition: none !important;
         }
+
+        .hero__image,
+        .tilt-card {
+          transform: none !important;
+        }
       }
     </style>
   </head>
   <body>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
     <header class="topbar">
       <div class="shell topbar__inner">
         <a class="brand" href="#top" aria-label="返回顶部">
           <span class="brand__mark">资</span>
           <span>xiaozi</span>
         </a>
+        <span class="topbar__status">广州 · 可到岗</span>
         <nav class="nav" aria-label="页面导航">
           <a href="#profile">优势</a>
           <a href="#skills">技能</a>
@@ -1071,6 +1422,11 @@
             <span>Codex + Pencil</span>
             <span>AI Script / Video</span>
             <span>Shoot -> Edit -> Publish</span>
+          </div>
+          <div class="vibe-command" aria-label="当前创作流程">
+            <span class="vibe-command__prompt">xiaozi@studio:~$</span>
+            <span class="vibe-command__text">build idea --shoot --edit --publish</span>
+            <span class="vibe-command__cursor" aria-hidden="true"></span>
           </div>
           <div class="hero__actions">
             <a class="button button--primary" href="tel:18273496710">拨打电话</a>
@@ -1186,6 +1542,37 @@
           <strong>湖南工艺美术职业大学</strong>
           <p>视觉传播设计学院</p>
           <p>广告艺术设计（新媒体传播与策划方向）</p>
+        </div>
+      </section>
+
+      <section class="section" id="workflow">
+        <div class="section__header">
+          <h2>创作流程</h2>
+          <span class="section__meta">Interactive Flow</span>
+        </div>
+        <div class="workflow-visual" id="workflowVisual">
+          <div class="workflow__steps" role="tablist" aria-label="内容创作流程">
+            <button class="workflow__step" type="button" role="tab" aria-selected="true" aria-controls="workflowPanel" data-code="01 / IDEA" data-title="内容策划" data-description="借助 ChatGPT、Codex 等工具梳理选题、脚本、分镜与发布文案，让创意在拍摄前形成清晰方案。">
+              <span class="workflow__step-index">01</span><strong>策划</strong>
+            </button>
+            <button class="workflow__step" type="button" role="tab" aria-selected="false" aria-controls="workflowPanel" data-code="02 / SHOOT" data-title="现场拍摄" data-description="使用索尼 / Sony 相机完成构图、光线判断、人物或产品拍摄，并按后期需求组织可用素材。">
+              <span class="workflow__step-index">02</span><strong>拍摄</strong>
+            </button>
+            <button class="workflow__step" type="button" role="tab" aria-selected="false" aria-controls="workflowPanel" data-code="03 / EDIT" data-title="剪辑包装" data-description="使用 PR、AE、剪映完成节奏剪辑、字幕、声音和基础动效，统一成片的视觉与叙事风格。">
+              <span class="workflow__step-index">03</span><strong>剪辑</strong>
+            </button>
+            <button class="workflow__step" type="button" role="tab" aria-selected="false" aria-controls="workflowPanel" data-code="04 / PUBLISH" data-title="发布运营" data-description="结合平台特征完成封面、标题、文案与发布，并根据内容反馈持续调整下一轮选题和表达。">
+              <span class="workflow__step-index">04</span><strong>发布</strong>
+            </button>
+          </div>
+          <div class="workflow__rail" aria-hidden="true"><span></span></div>
+          <div class="workflow__detail" id="workflowPanel" role="tabpanel" aria-live="polite">
+            <span class="workflow__code" id="workflowCode">01 / IDEA</span>
+            <div>
+              <h3 id="workflowTitle">内容策划</h3>
+              <p id="workflowDescription">借助 ChatGPT、Codex 等工具梳理选题、脚本、分镜与发布文案，让创意在拍摄前形成清晰方案。</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1348,6 +1735,21 @@
       const modalTitle = document.querySelector("#modalTitle");
       const modalDesc = document.querySelector("#modalDesc");
       const modalClose = document.querySelector("#modalClose");
+      const scrollProgress = document.querySelector("#scrollProgress");
+      const hero = document.querySelector(".hero");
+      const heroImage = document.querySelector(".hero__image");
+      const commandText = document.querySelector(".vibe-command__text");
+      const workflowVisual = document.querySelector("#workflowVisual");
+      const workflowSteps = Array.from(document.querySelectorAll(".workflow__step"));
+      const workflowPanel = document.querySelector("#workflowPanel");
+      const workflowCode = document.querySelector("#workflowCode");
+      const workflowTitle = document.querySelector("#workflowTitle");
+      const workflowDescription = document.querySelector("#workflowDescription");
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+      let modalTrigger = null;
+
+      if (!prefersReducedMotion) document.body.classList.add("motion-ready");
 
       function showToast(text) {
         toast.textContent = text;
@@ -1358,7 +1760,20 @@
 
       async function copyText(text) {
         try {
-          await navigator.clipboard.writeText(text);
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            const input = document.createElement("textarea");
+            input.value = text;
+            input.setAttribute("readonly", "");
+            input.style.position = "fixed";
+            input.style.opacity = "0";
+            document.body.appendChild(input);
+            input.select();
+            const copied = document.execCommand("copy");
+            input.remove();
+            if (!copied) throw new Error("copy failed");
+          }
           if (text.includes("@")) {
             showToast("邮箱地址已复制");
           } else if (text.startsWith("https://")) {
@@ -1375,15 +1790,30 @@
         item.addEventListener("click", () => copyText(item.dataset.copy));
       });
 
+      document.querySelectorAll(".button, .contact-card, .qr-card").forEach((item) => {
+        item.addEventListener("pointerdown", (event) => {
+          if (prefersReducedMotion) return;
+          const rect = item.getBoundingClientRect();
+          const ripple = document.createElement("span");
+          ripple.className = "button-ripple";
+          ripple.style.left = `${event.clientX - rect.left}px`;
+          ripple.style.top = `${event.clientY - rect.top}px`;
+          item.appendChild(ripple);
+          ripple.addEventListener("animationend", () => ripple.remove(), { once: true });
+        });
+      });
+
       document.querySelectorAll(".skill").forEach((item) => {
         item.tabIndex = 0;
         item.setAttribute("role", "button");
         item.setAttribute("aria-label", "查看" + item.dataset.title + "技能详情");
         const openSkill = () => {
+          modalTrigger = item;
           modalTitle.textContent = item.dataset.title;
           modalDesc.textContent = item.dataset.desc;
           modal.classList.add("is-open");
           modal.setAttribute("aria-hidden", "false");
+          modalClose.focus();
         };
         item.addEventListener("click", openSkill);
         item.addEventListener("keydown", (event) => {
@@ -1415,6 +1845,7 @@
       function closeModal() {
         modal.classList.remove("is-open");
         modal.setAttribute("aria-hidden", "true");
+        if (modalTrigger) modalTrigger.focus();
       }
 
       modalClose.addEventListener("click", closeModal);
@@ -1437,8 +1868,156 @@
           },
           { threshold: 0.12 }
         );
-        document.querySelectorAll(".section, .metric, .skill, .project").forEach((item) => observer.observe(item));
+        document.querySelectorAll(".section, .metric, .skill, .project").forEach((item, index) => {
+          item.style.setProperty("--reveal-delay", `${Math.min(index % 5, 4) * 55}ms`);
+          item.addEventListener("animationend", () => item.classList.add("reveal-done"), { once: true });
+          observer.observe(item);
+        });
+
+        const navLinks = new Map(
+          Array.from(document.querySelectorAll(".nav a")).map((link) => [link.getAttribute("href").slice(1), link])
+        );
+        const navObserver = new IntersectionObserver(
+          (entries) => {
+            const visible = entries
+              .filter((entry) => entry.isIntersecting)
+              .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+            if (!visible) return;
+            navLinks.forEach((link) => link.classList.remove("is-active"));
+            const activeLink = navLinks.get(visible.target.id);
+            if (activeLink) activeLink.classList.add("is-active");
+          },
+          { rootMargin: "-20% 0px -60%", threshold: [0.05, 0.25, 0.5] }
+        );
+        navLinks.forEach((link, id) => {
+          const section = document.getElementById(id);
+          if (section) navObserver.observe(section);
+        });
       }
+
+      if (!prefersReducedMotion && commandText) {
+        const commands = [
+          "build idea --shoot --edit --publish",
+          "codex run --with pencil --creative",
+          "ai script --storyboard --video",
+        ];
+        let commandIndex = 0;
+        let characterIndex = commands[0].length;
+        let deleting = true;
+
+        const typeCommand = () => {
+          const command = commands[commandIndex];
+          characterIndex += deleting ? -1 : 1;
+          commandText.textContent = command.slice(0, characterIndex);
+          let delay = deleting ? 26 : 44;
+
+          if (characterIndex <= 0) {
+            deleting = false;
+            commandIndex = (commandIndex + 1) % commands.length;
+            delay = 260;
+          } else if (characterIndex >= command.length) {
+            deleting = true;
+            delay = 1500;
+          }
+          window.setTimeout(typeCommand, delay);
+        };
+        window.setTimeout(typeCommand, 1200);
+      }
+
+      if (workflowVisual && workflowSteps.length) {
+        let workflowIndex = 0;
+        let workflowTimer = null;
+
+        const showWorkflowStep = (index, moveFocus = false) => {
+          workflowIndex = (index + workflowSteps.length) % workflowSteps.length;
+          const step = workflowSteps[workflowIndex];
+          workflowSteps.forEach((item, itemIndex) => {
+            const selected = itemIndex === workflowIndex;
+            item.setAttribute("aria-selected", selected ? "true" : "false");
+            item.tabIndex = selected ? 0 : -1;
+          });
+          workflowVisual.style.setProperty("--flow-progress", `${(workflowIndex / (workflowSteps.length - 1)) * 100}%`);
+          workflowCode.textContent = step.dataset.code;
+          workflowTitle.textContent = step.dataset.title;
+          workflowDescription.textContent = step.dataset.description;
+          workflowPanel.classList.remove("is-changing");
+          void workflowPanel.offsetWidth;
+          workflowPanel.classList.add("is-changing");
+          if (moveFocus) step.focus();
+        };
+
+        const stopWorkflowCycle = () => {
+          window.clearInterval(workflowTimer);
+          workflowTimer = null;
+        };
+
+        const startWorkflowCycle = () => {
+          if (prefersReducedMotion || document.hidden) return;
+          stopWorkflowCycle();
+          workflowTimer = window.setInterval(() => showWorkflowStep(workflowIndex + 1), 3600);
+        };
+
+        workflowSteps.forEach((step, index) => {
+          step.addEventListener("click", () => {
+            showWorkflowStep(index);
+            startWorkflowCycle();
+          });
+          step.addEventListener("keydown", (event) => {
+            if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+            event.preventDefault();
+            showWorkflowStep(workflowIndex + (event.key === "ArrowRight" ? 1 : -1), true);
+          });
+        });
+        workflowVisual.addEventListener("mouseenter", stopWorkflowCycle);
+        workflowVisual.addEventListener("mouseleave", startWorkflowCycle);
+        workflowVisual.addEventListener("focusin", stopWorkflowCycle);
+        workflowVisual.addEventListener("focusout", (event) => {
+          if (!workflowVisual.contains(event.relatedTarget)) startWorkflowCycle();
+        });
+        document.addEventListener("visibilitychange", () => (document.hidden ? stopWorkflowCycle() : startWorkflowCycle()));
+        showWorkflowStep(0);
+        startWorkflowCycle();
+      }
+
+      if (canHover && !prefersReducedMotion) {
+        const tiltCards = document.querySelectorAll(".metric, .mini-card, .skill, .project, .award, .contact-card, .qr-card");
+        tiltCards.forEach((card) => {
+          card.classList.add("tilt-card");
+          card.addEventListener("pointermove", (event) => {
+            const rect = card.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width;
+            const y = (event.clientY - rect.top) / rect.height;
+            card.style.setProperty("--spot-x", `${x * 100}%`);
+            card.style.setProperty("--spot-y", `${y * 100}%`);
+            card.style.transform = `perspective(900px) rotateX(${(0.5 - y) * 4}deg) rotateY(${(x - 0.5) * 5}deg) translateY(-2px)`;
+          });
+          card.addEventListener("pointerleave", () => {
+            card.style.transform = "";
+            card.style.removeProperty("--spot-x");
+            card.style.removeProperty("--spot-y");
+          });
+        });
+
+        hero.addEventListener("pointermove", (event) => {
+          const rect = hero.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - 0.5;
+          const y = (event.clientY - rect.top) / rect.height - 0.5;
+          heroImage.style.transform = `scale(1.05) translate3d(${x * -10}px, ${y * -8}px, 0)`;
+        });
+        hero.addEventListener("pointerleave", () => {
+          heroImage.style.transform = "";
+        });
+      }
+
+      function updateScrollProgress() {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
+        scrollProgress.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
+      }
+
+      updateScrollProgress();
+      window.addEventListener("scroll", updateScrollProgress, { passive: true });
+      window.addEventListener("resize", updateScrollProgress);
     </script>
   </body>
 </html>
